@@ -1,0 +1,51 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Material Details</h5>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formVal">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Material Name</label>
+                <input type="text" formControlName="name" placeholder="Eg. Copper" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Material Type</label>
+                <select formControlName="type" class="form-select" aria-label="Default select example">
+                    <option selected value="solid">Solid</option>
+                    <option value="liquid">Liquid</option>
+                    <option value="gas">Gases</option>
+                  </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Material Weight</label>
+                <input type="number" formControlName="weight" placeholder="in kg" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Material Price</label>
+
+                <input type="number" formControlName="price" placeholder="₹" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Material Quantity</label>
+                <input type="text" class="form-control" placeholder="Units" formControlName="quantity" id="exampleInputPassword1">
+            </div>
+            <div class="row" *ngIf="showMsg">
+                <div class="col-xs-12">
+                    <p class="alert alert-success">
+                        <strong>Material Added Success!</strong>
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <input type="reset" class="btn btn-secondary m-3">
+                <button type="button" (click)="postMaterialDetails()" class="btn btn-primary">Add</button>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>

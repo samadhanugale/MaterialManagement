@@ -1,0 +1,93 @@
+<section>
+    <table class="table mt-3 table-hover table-striped table-dark table-sm">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Material Name </th>
+                <th scope="col">Material Type</th>
+                <th scope="col">Material weight</th>
+                <th scope="col">Material price</th>
+                <th scope="col">Material Quantity</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of materialData">
+                <td>{{a.id}}</td>
+                <td>{{a.name}}</td>
+                <td>{{a.type | uppercase}}</td>
+                <td>{{a.weight}} kg</td>
+                <td>{{a.price | currency : 'INR'}}</td>
+                <td>{{a.quantity}} units</td>
+                <td>
+                    <button (click)="onEdit(a)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                    <button (click)="deleteMaterial(a)" class="btn btn-danger mx-3">Delete</button>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="row" *ngIf="showMsg">
+        <div class="col-xs-12">
+            <p class="alert alert-success">
+                <strong>Material Added Success!</strong>
+
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ----------------------------------------------------------------- -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Material Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formVal">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Material Name</label>
+                        <input type="text" formControlName="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div *ngIf="formVal.controls['name'].invalid && formVal.controls['name'].touched" class="alert alert-danger">
+                            <div *ngIf="formVal.controls['name'].errors">
+                                Name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Material Type</label>
+                        <select formControlName="type" class="form-select" aria-label="Default select example">
+                            <option selected value="solid">Solid</option>
+                            <option value="liquid">Liquid</option>
+                            <option value="gas">Gases</option>
+                          </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Material Weight</label>
+                        <input type="number" formControlName="weight" placeholder="in kg's" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Material Price</label>
+
+                        <input type="number" formControlName="price" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Material Quantity</label>
+                        <input type="text" class="form-control" formControlName="quantity" id="exampleInputPassword1">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="updateMaterialDetails()" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

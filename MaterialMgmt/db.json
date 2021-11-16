@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "dad",
+      "type": "solid",
+      "weight": 33,
+      "price": 22,
+      "quantity": null
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
